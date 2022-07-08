@@ -17,14 +17,14 @@ if __name__ == "__main__":
 
     # Data input:
     n = input()
-    collection = tuple(input().split(sep=','))
+    collection = input().split(sep=',')
 
     # Create a root-node
     root = Node(value=-1, parent_index=None, level=1)
     for collection_item in collection:
         if collection_item == -1:
             root.index = collection.index(collection_item)
-
+            collection.pop(root.index)
 
 
 
