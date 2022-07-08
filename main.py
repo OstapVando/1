@@ -2,29 +2,43 @@
 class Node (object):
 
     # Self description
-    def __init__(self, index, value, parent_index, level):
-        self.index = index
+    def __init__(self, value, parent, level, children=[]):
         self.value = value
-        self.parent_index = parent_index
+        self.parent = parent
         self.level = level
+        self.children = children # list of indexes of children nodes
 
-def findIndex (parent, collection):
-    for collection_item in collection:
-        if collection_item == parent.index:
-            return collection.index(collection_item)
+    # search for children in collection method
+    def search(self, collection):
+        for item in collection:
+            if item == self.index:
+                self.children.append(item)
+
+
+
+
 
 if __name__ == "__main__":
 
     # Data input:
     n = input()
     collection = input().split(sep=',')
+    tree = {}
+    depth = 0
 
     # Create a root-node
-    root = Node(value=-1, parent_index=None, level=1)
-    for collection_item in collection:
-        if collection_item == -1:
-            root.index = collection.index(collection_item)
-            collection.pop(root.index)
+    root = Node(value=-1, parent=None, level=1)
+    for item in collection:
+        if item == -1:
+            root.index = collection.index(item)
+
+    # Start our tree with a root-node
+    tree[-1] = root
+
+    tree[-1].search(collection=collection)
+    
+
+
 
 
 
