@@ -1,8 +1,12 @@
+tree = {}
+depth = 0
+
 # Create a class for node of tree
 class Node (object):
 
     # Self description
-    def __init__(self, value, parent, level, children=[]):
+    def __init__(self,index, value, parent, level, children=[]):
+        self.index = index
         self.value = value
         self.parent = parent
         self.level = level
@@ -10,11 +14,36 @@ class Node (object):
 
     # search for children in collection method
     def search(self, collection):
-        for item in collection:
-            if item == self.index:
-                self.children.append(item)
+        for value in collection:
+            if value == self.index:
+                self.children.append(collection.index(value))
+
+# Find index of node
+def findIndex(node, collection):
+    return collection.index(node)
+
+# Function for creating new child-node
+def createNode(parent, collection):
+    newNode = Node(level=parent.level+1)
+    tree[parent.children[-1]] = newNode
+    newNode.value = collection[parent.children[-1]]
+    return newNode
 
 
+# Recursive function
+def IN_depth (currentNode, collection, depth):
+
+    currentNode.search(collection=collection)
+
+    # there is at least one descedant
+    while currentNode.children != []:
+        childNode = createNode(currentNode, collection=collection)
+        currentNode.children.pop()
+        IN_depth(childNode, collection=collection)
+
+    # base case
+    depth = max(depth, currentNode.level)
+    return depth
 
 
 
@@ -23,8 +52,7 @@ if __name__ == "__main__":
     # Data input:
     n = input()
     collection = input().split(sep=',')
-    tree = {}
-    depth = 0
+
 
     # Create a root-node
     root = Node(value=-1, parent=None, level=1)
@@ -34,9 +62,13 @@ if __name__ == "__main__":
 
     # Start our tree with a root-node
     tree[-1] = root
+    tree[-1].search(collection)
 
-    tree[-1].search(collection=collection)
-    
+    # Recursive function to traverse a tree
+    depth = IN_depth(root, collection, 1)
+    print(depth)
+
+
 
 
 
