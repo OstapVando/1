@@ -14,9 +14,12 @@ class Node (object):
 
     # search for children in collection method
     def search(self, collection):
-        for value in collection:
-            if value == self.index:
-                self.children.append(collection.index(value))
+        self.children = []
+        for index in range(len(collection)):
+            item = collection[index]
+            if int(item) == self.index:
+                self.children.append(index)
+
 
 # Find index of node
 def findIndex(node, collection):
@@ -58,14 +61,18 @@ if __name__ == "__main__":
     for item in collection:
         if item == '-1':
             root.index = collection.index(str(item))
-            print('yeah')
-    print('root: ', root.index)
+
+    # search
+    root.search(collection=collection)
+    # print
+    print('children ', root.children)
+
     # Start our tree with a root-node
     tree[-1] = root
-    tree[-1].search(collection)
+    #tree[-1].search(collection)
 
     # Recursive function to traverse a tree
-    depth = IN_depth(root, collection, 1)
+    # depth = IN_depth(root, collection, 1)
     print(depth)
 
 
