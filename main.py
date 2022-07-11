@@ -21,10 +21,6 @@ class Node (object):
                 self.children.append(index)
 
 
-# Find index of node
-def findIndex(node, collection):
-    return collection.index(node)
-
 # Function for creating new child-node
 def createNode(parent, collection):
     newNode = Node(level=parent.level+1)
