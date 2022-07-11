@@ -51,11 +51,11 @@ if __name__ == "__main__":
 
     # Data input:
     n = input()
-    collection = input().split(sep=',')
+    collection = input().split(sep=' ')
 
 
     # Create a root-node
-    root = Node(value=-1, parent=None, level=1)
+    root = Node(value=-1, parent=None, level=1, index=None)
     for item in collection:
         if item == -1:
             root.index = collection.index(item)
