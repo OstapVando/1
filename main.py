@@ -34,7 +34,7 @@ def createNode(parent, collection):
 def IN_depth (currentNode, collection, depth):
 
     currentNode.search(collection=collection)
-
+    print('node: ',{'index ': currentNode.index, 'value ': currentNode.value, 'parent ': currentNode.parent, 'level ': currentNode.level, 'children ': currentNode.children })
     # there is at least one descedant
     while currentNode.children != []:
         childNode = createNode(currentNode, collection=collection)
@@ -53,13 +53,13 @@ if __name__ == "__main__":
     n = input()
     collection = input().split(sep=' ')
 
-
     # Create a root-node
     root = Node(value=-1, parent=None, level=1, index=None)
     for item in collection:
-        if item == -1:
-            root.index = collection.index(item)
-
+        if item == '-1':
+            root.index = collection.index(str(item))
+            print('yeah')
+    print('root: ', root.index)
     # Start our tree with a root-node
     tree[-1] = root
     tree[-1].search(collection)
