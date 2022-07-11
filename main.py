@@ -42,7 +42,6 @@ def IN_depth (currentNode, collection, depth):
 
     # base case
     depth = max(depth, currentNode.level)
-    print(depth)
     return depth
 
 
@@ -61,7 +60,7 @@ if __name__ == "__main__":
 
     # compute
     depth = IN_depth(root, collection, 1)
-    print('fin: ', depth)
+    print(depth)
 
 
 
